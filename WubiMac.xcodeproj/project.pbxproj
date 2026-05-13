@@ -1,0 +1,823 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		003A555AD37C4DA32DA6A146 /* DatabasePathResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B05DB0E13DC5B8336AE01FB /* DatabasePathResolver.swift */; };
+		0C2F0ADE665B7FB95D4181F4 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771776CC8180279A0E99A185 /* InputMethodKit.framework */; };
+		1310C94D4E7CCCC06827F96D /* WubiDictTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0673A00FDEB77D76645B8C /* WubiDictTests.swift */; };
+		150C2CD88A1F93C0F48B921A /* CandidatePaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = C244FD9B52E8894219A96D9B /* CandidatePaging.swift */; };
+		1FBBB12B04E5EB206E7635F2 /* CompositionResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA7FC7D80C573EAE67D1B0D /* CompositionResolver.swift */; };
+		26BC1B21E78572270EFD7EDF /* CandidatePresenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2825786DC93CF51207F99FE /* CandidatePresenting.swift */; };
+		323F9082CE57F9A481F353B4 /* wubi_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 177D82871D984F947CF28E5D /* wubi_icon.icns */; };
+		47539E6DF6293EAA58523E38 /* WubiSupportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D9D802365CECDD51A5B19B /* WubiSupportTests.swift */; };
+		4D53F8B731613F8D790E02A6 /* WubiDictBehaviorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FDC33A6C04AD121813C12A /* WubiDictBehaviorTests.swift */; };
+		6003D6F27FCD899594AFD32D /* libWubiEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C15DA9E02B35A67C386F769 /* libWubiEngine.a */; };
+		605285D3D4E597FEB2951978 /* libWubiEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C15DA9E02B35A67C386F769 /* libWubiEngine.a */; };
+		641C6037CB799EA237BED8D2 /* Candidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7DE770EFDFF761AE8E4260 /* Candidate.swift */; };
+		711B4D22614A8716E0EEC2A8 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54212D4A547F14C43B8AA456 /* SettingsManager.swift */; };
+		88CEF03635A51A5812E490AC /* libWubiSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B378F0470F88DD690D2DDB36 /* libWubiSupport.a */; };
+		8A01DD51A2C6731CE56C7533 /* ShiftToggleTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CED35DC52E83D8AF7FEE913 /* ShiftToggleTracker.swift */; };
+		8D4BECC34817D08399A64051 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFE9AAE5CB6AC39187C9350 /* main.swift */; };
+		9755EEB5C3E12472529C4469 /* ConfigurationWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F494BF9C9FCDD1E988B468DC /* ConfigurationWindowController.swift */; };
+		A5E844ED64AEA82B6EEDC10A /* libWubiSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B378F0470F88DD690D2DDB36 /* libWubiSupport.a */; };
+		A8E09456CABD40CC23D84BCD /* SettingsProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625536788E05FFCD39E9AC1E /* SettingsProviding.swift */; };
+		A9E0283AF0B8EBEC3C4AF4F8 /* InputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620280897E0451388285BDE3 /* InputController.swift */; };
+		AA29ACBCEF9F2F3E45315AB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A93964308811B4136F3F20E /* AppDelegate.swift */; };
+		AA62D82EF69296DB34FD3FAD /* wubi_menu_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 9455F44D4B1FCC2449B7EEEF /* wubi_menu_icon.icns */; };
+		B0691AA7A2FCF545DADD03B1 /* wubi_menu_icon_alt.icns in Resources */ = {isa = PBXBuildFile; fileRef = 60B91894FB3780A7DD6E37CE /* wubi_menu_icon_alt.icns */; };
+		BD3E7E03AD5F2EE18AB5034F /* CandidatePanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B5D6BC92A81AE1EA5305D5 /* CandidatePanel.swift */; };
+		C6CDE246800C96095E8CE53B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F3CBBB95304283758EE3600 /* libsqlite3.tbd */; };
+		C6FF20D8ECBFA4AC67F09540 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F3CBBB95304283758EE3600 /* libsqlite3.tbd */; };
+		D2F0CF691A4BE46C07EA7522 /* WubiDictBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747AE79B08441CD9D7348476 /* WubiDictBuilder.swift */; };
+		DCA91E6A871B1FFAED3DDD03 /* WubiInputEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50010E17F87EE9EEC77BDA7E /* WubiInputEngine.swift */; };
+		E98BED85825FE8A1F9268B2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0EA111A4EB4D04254AA8159F /* InfoPlist.strings */; };
+		F402BD9F8311F888D3661FEE /* WubiDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57D217450AE67ADF81F6E91 /* WubiDict.swift */; };
+		F965A2158B5EB82A389FC544 /* PunctuationTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A365E1B48DC86F018E094C6 /* PunctuationTransformer.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		05CF9950EE4EA00D8408E5F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AD6C5D8D4C1A332D9C72B04D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7DAF0C5C9B3A45BF9948E9A8;
+			remoteInfo = WubiEngine;
+		};
+		20A341ABB001260F9395375E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AD6C5D8D4C1A332D9C72B04D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 646ECB589E7229E5B97AE674;
+			remoteInfo = WubiSupport;
+		};
+		3832B0030F6743BE58705455 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AD6C5D8D4C1A332D9C72B04D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 646ECB589E7229E5B97AE674;
+			remoteInfo = WubiSupport;
+		};
+		7F6B8359C71C507D51CCE424 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AD6C5D8D4C1A332D9C72B04D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7DAF0C5C9B3A45BF9948E9A8;
+			remoteInfo = WubiEngine;
+		};
+		A36AD8F62842CED7E0A33A6A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AD6C5D8D4C1A332D9C72B04D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7DAF0C5C9B3A45BF9948E9A8;
+			remoteInfo = WubiEngine;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0C15DA9E02B35A67C386F769 /* libWubiEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libWubiEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D7DE770EFDFF761AE8E4260 /* Candidate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Candidate.swift; sourceTree = "<group>"; };
+		1A365E1B48DC86F018E094C6 /* PunctuationTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PunctuationTransformer.swift; sourceTree = "<group>"; };
+		2CED35DC52E83D8AF7FEE913 /* ShiftToggleTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftToggleTracker.swift; sourceTree = "<group>"; };
+		36BC1E7851BC2A951705F119 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = en; path = en.lproj/wubi_icon.icns; sourceTree = "<group>"; };
+		3A93964308811B4136F3F20E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		44FDC33A6C04AD121813C12A /* WubiDictBehaviorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WubiDictBehaviorTests.swift; sourceTree = "<group>"; };
+		50010E17F87EE9EEC77BDA7E /* WubiInputEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WubiInputEngine.swift; sourceTree = "<group>"; };
+		54212D4A547F14C43B8AA456 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		5FDC7B9F8069825C823F2EA1 /* WubiMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WubiMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		60B91894FB3780A7DD6E37CE /* wubi_menu_icon_alt.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = wubi_menu_icon_alt.icns; sourceTree = "<group>"; };
+		620280897E0451388285BDE3 /* InputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputController.swift; sourceTree = "<group>"; };
+		625536788E05FFCD39E9AC1E /* SettingsProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProviding.swift; sourceTree = "<group>"; };
+		6F3CBBB95304283758EE3600 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		747AE79B08441CD9D7348476 /* WubiDictBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WubiDictBuilder.swift; sourceTree = "<group>"; };
+		771776CC8180279A0E99A185 /* InputMethodKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMethodKit.framework; path = System/Library/Frameworks/InputMethodKit.framework; sourceTree = SDKROOT; };
+		7DA7FC7D80C573EAE67D1B0D /* CompositionResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionResolver.swift; sourceTree = "<group>"; };
+		9455F44D4B1FCC2449B7EEEF /* wubi_menu_icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = wubi_menu_icon.icns; sourceTree = "<group>"; };
+		98D9D802365CECDD51A5B19B /* WubiSupportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WubiSupportTests.swift; sourceTree = "<group>"; };
+		9B05DB0E13DC5B8336AE01FB /* DatabasePathResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabasePathResolver.swift; sourceTree = "<group>"; };
+		9CFE9AAE5CB6AC39187C9350 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		A22F5933D45A3A0F3AEDFD62 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A57D217450AE67ADF81F6E91 /* WubiDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WubiDict.swift; sourceTree = "<group>"; };
+		AD0673A00FDEB77D76645B8C /* WubiDictTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WubiDictTests.swift; sourceTree = "<group>"; };
+		B2A05C8EB6F00AB4B398C711 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "zh-Hans"; path = "zh-Hans.lproj/wubi_icon.icns"; sourceTree = "<group>"; };
+		B378F0470F88DD690D2DDB36 /* libWubiSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libWubiSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C244FD9B52E8894219A96D9B /* CandidatePaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidatePaging.swift; sourceTree = "<group>"; };
+		D4513359AB9A8F62CE8A8219 /* WubiMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WubiMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6B5D6BC92A81AE1EA5305D5 /* CandidatePanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidatePanel.swift; sourceTree = "<group>"; };
+		DED5646D29FE5D25499C4E90 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F2825786DC93CF51207F99FE /* CandidatePresenting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidatePresenting.swift; sourceTree = "<group>"; };
+		F494BF9C9FCDD1E988B468DC /* ConfigurationWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationWindowController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		217745CCDEF742C5244E5BFE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6CDE246800C96095E8CE53B /* libsqlite3.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44D346C7A4604176CF9E933F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				605285D3D4E597FEB2951978 /* libWubiEngine.a in Frameworks */,
+				88CEF03635A51A5812E490AC /* libWubiSupport.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C881BCF9358DA12A11C2522 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C2F0ADE665B7FB95D4181F4 /* InputMethodKit.framework in Frameworks */,
+				C6FF20D8ECBFA4AC67F09540 /* libsqlite3.tbd in Frameworks */,
+				6003D6F27FCD899594AFD32D /* libWubiEngine.a in Frameworks */,
+				A5E844ED64AEA82B6EEDC10A /* libWubiSupport.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2DC506E04F8A63FBCFF6BA1E /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				44FDC33A6C04AD121813C12A /* WubiDictBehaviorTests.swift */,
+				AD0673A00FDEB77D76645B8C /* WubiDictTests.swift */,
+				98D9D802365CECDD51A5B19B /* WubiSupportTests.swift */,
+			);
+			name = Sources;
+			path = WubiMacTests/Sources;
+			sourceTree = "<group>";
+		};
+		61AF959A0E7AFE1899C9DCD4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0C15DA9E02B35A67C386F769 /* libWubiEngine.a */,
+				B378F0470F88DD690D2DDB36 /* libWubiSupport.a */,
+				5FDC7B9F8069825C823F2EA1 /* WubiMac.app */,
+				D4513359AB9A8F62CE8A8219 /* WubiMacTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		67DC1487B9C6B5E56FFB76CC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				771776CC8180279A0E99A185 /* InputMethodKit.framework */,
+				6F3CBBB95304283758EE3600 /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		861A681496B0C5B057135107 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				60B91894FB3780A7DD6E37CE /* wubi_menu_icon_alt.icns */,
+				9455F44D4B1FCC2449B7EEEF /* wubi_menu_icon.icns */,
+				0EA111A4EB4D04254AA8159F /* InfoPlist.strings */,
+				177D82871D984F947CF28E5D /* wubi_icon.icns */,
+			);
+			name = Resources;
+			path = WubiMac/Resources;
+			sourceTree = "<group>";
+		};
+		897074E1D0B5CDDBD5095C08 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				0D7DE770EFDFF761AE8E4260 /* Candidate.swift */,
+				A57D217450AE67ADF81F6E91 /* WubiDict.swift */,
+				747AE79B08441CD9D7348476 /* WubiDictBuilder.swift */,
+			);
+			name = Sources;
+			path = WubiEngine/Sources;
+			sourceTree = "<group>";
+		};
+		C2C29F2B89E3E6753AC85DD6 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				C244FD9B52E8894219A96D9B /* CandidatePaging.swift */,
+				F2825786DC93CF51207F99FE /* CandidatePresenting.swift */,
+				7DA7FC7D80C573EAE67D1B0D /* CompositionResolver.swift */,
+				9B05DB0E13DC5B8336AE01FB /* DatabasePathResolver.swift */,
+				1A365E1B48DC86F018E094C6 /* PunctuationTransformer.swift */,
+				625536788E05FFCD39E9AC1E /* SettingsProviding.swift */,
+				2CED35DC52E83D8AF7FEE913 /* ShiftToggleTracker.swift */,
+				50010E17F87EE9EEC77BDA7E /* WubiInputEngine.swift */,
+			);
+			name = Sources;
+			path = WubiSupport/Sources;
+			sourceTree = "<group>";
+		};
+		F5B17CEC432E834002C99391 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				3A93964308811B4136F3F20E /* AppDelegate.swift */,
+				D6B5D6BC92A81AE1EA5305D5 /* CandidatePanel.swift */,
+				F494BF9C9FCDD1E988B468DC /* ConfigurationWindowController.swift */,
+				620280897E0451388285BDE3 /* InputController.swift */,
+				9CFE9AAE5CB6AC39187C9350 /* main.swift */,
+				54212D4A547F14C43B8AA456 /* SettingsManager.swift */,
+			);
+			name = Sources;
+			path = WubiMac/Sources;
+			sourceTree = "<group>";
+		};
+		FD678F93F00E8287AEED4A71 = {
+			isa = PBXGroup;
+			children = (
+				861A681496B0C5B057135107 /* Resources */,
+				897074E1D0B5CDDBD5095C08 /* Sources */,
+				F5B17CEC432E834002C99391 /* Sources */,
+				2DC506E04F8A63FBCFF6BA1E /* Sources */,
+				C2C29F2B89E3E6753AC85DD6 /* Sources */,
+				67DC1487B9C6B5E56FFB76CC /* Frameworks */,
+				61AF959A0E7AFE1899C9DCD4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4B1FE1A7C324EFB86F99A4BB /* WubiMacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 16B848B0CF1C9FDE4E5180F7 /* Build configuration list for PBXNativeTarget "WubiMacTests" */;
+			buildPhases = (
+				957E31024CE3EC2BC9ED5538 /* Sources */,
+				44D346C7A4604176CF9E933F /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FFA7CA3CD28C7753F33917DA /* PBXTargetDependency */,
+				FF825CCE1AD6588036E44F94 /* PBXTargetDependency */,
+			);
+			name = WubiMacTests;
+			packageProductDependencies = (
+			);
+			productName = WubiMacTests;
+			productReference = D4513359AB9A8F62CE8A8219 /* WubiMacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		646ECB589E7229E5B97AE674 /* WubiSupport */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 046448755E6F3B2FDFDBFD3E /* Build configuration list for PBXNativeTarget "WubiSupport" */;
+			buildPhases = (
+				4AE4B9CA94FA6522560D911B /* Sources */,
+				A88DF4D8D7B7C4970A749DB7 /* Copy Swift Objective-C Interface Header */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FFDB9CB3FA55116496634DF3 /* PBXTargetDependency */,
+			);
+			name = WubiSupport;
+			packageProductDependencies = (
+			);
+			productName = WubiSupport;
+			productReference = B378F0470F88DD690D2DDB36 /* libWubiSupport.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		679A3BEF289439C559DA7AAF /* WubiMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3921C7B79236EB896F1AA16B /* Build configuration list for PBXNativeTarget "WubiMac" */;
+			buildPhases = (
+				6699A5AA2134D4B4722AF13E /* Sources */,
+				51BAA6C39E7768698D2750E6 /* Resources */,
+				5C881BCF9358DA12A11C2522 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5983074EEF55F182F66A256D /* PBXTargetDependency */,
+				621673151EB18CA940F240DA /* PBXTargetDependency */,
+			);
+			name = WubiMac;
+			packageProductDependencies = (
+			);
+			productName = WubiMac;
+			productReference = 5FDC7B9F8069825C823F2EA1 /* WubiMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7DAF0C5C9B3A45BF9948E9A8 /* WubiEngine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC79FB8638F1EA41749C1534 /* Build configuration list for PBXNativeTarget "WubiEngine" */;
+			buildPhases = (
+				6C941507F948F57139424481 /* Sources */,
+				8BA42CEB5CA85869EFB3703E /* Copy Swift Objective-C Interface Header */,
+				217745CCDEF742C5244E5BFE /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WubiEngine;
+			packageProductDependencies = (
+			);
+			productName = WubiEngine;
+			productReference = 0C15DA9E02B35A67C386F769 /* libWubiEngine.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AD6C5D8D4C1A332D9C72B04D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = 3028D50C92E7FAFEDEE42094 /* Build configuration list for PBXProject "WubiMac" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+				"zh-Hans",
+			);
+			mainGroup = FD678F93F00E8287AEED4A71;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 61AF959A0E7AFE1899C9DCD4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7DAF0C5C9B3A45BF9948E9A8 /* WubiEngine */,
+				679A3BEF289439C559DA7AAF /* WubiMac */,
+				4B1FE1A7C324EFB86F99A4BB /* WubiMacTests */,
+				646ECB589E7229E5B97AE674 /* WubiSupport */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		51BAA6C39E7768698D2750E6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E98BED85825FE8A1F9268B2D /* InfoPlist.strings in Resources */,
+				323F9082CE57F9A481F353B4 /* wubi_icon.icns in Resources */,
+				AA62D82EF69296DB34FD3FAD /* wubi_menu_icon.icns in Resources */,
+				B0691AA7A2FCF545DADD03B1 /* wubi_menu_icon_alt.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8BA42CEB5CA85869EFB3703E /* Copy Swift Objective-C Interface Header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(DERIVED_SOURCES_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
+			);
+			name = "Copy Swift Objective-C Interface Header";
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/include/$(PRODUCT_MODULE_NAME)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ditto \"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+		};
+		A88DF4D8D7B7C4970A749DB7 /* Copy Swift Objective-C Interface Header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(DERIVED_SOURCES_DIR)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
+			);
+			name = "Copy Swift Objective-C Interface Header";
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/include/$(PRODUCT_MODULE_NAME)/$(SWIFT_OBJC_INTERFACE_HEADER_NAME)",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ditto \"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4AE4B9CA94FA6522560D911B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				150C2CD88A1F93C0F48B921A /* CandidatePaging.swift in Sources */,
+				26BC1B21E78572270EFD7EDF /* CandidatePresenting.swift in Sources */,
+				1FBBB12B04E5EB206E7635F2 /* CompositionResolver.swift in Sources */,
+				003A555AD37C4DA32DA6A146 /* DatabasePathResolver.swift in Sources */,
+				F965A2158B5EB82A389FC544 /* PunctuationTransformer.swift in Sources */,
+				A8E09456CABD40CC23D84BCD /* SettingsProviding.swift in Sources */,
+				8A01DD51A2C6731CE56C7533 /* ShiftToggleTracker.swift in Sources */,
+				DCA91E6A871B1FFAED3DDD03 /* WubiInputEngine.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6699A5AA2134D4B4722AF13E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA29ACBCEF9F2F3E45315AB5 /* AppDelegate.swift in Sources */,
+				BD3E7E03AD5F2EE18AB5034F /* CandidatePanel.swift in Sources */,
+				9755EEB5C3E12472529C4469 /* ConfigurationWindowController.swift in Sources */,
+				A9E0283AF0B8EBEC3C4AF4F8 /* InputController.swift in Sources */,
+				711B4D22614A8716E0EEC2A8 /* SettingsManager.swift in Sources */,
+				8D4BECC34817D08399A64051 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C941507F948F57139424481 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				641C6037CB799EA237BED8D2 /* Candidate.swift in Sources */,
+				F402BD9F8311F888D3661FEE /* WubiDict.swift in Sources */,
+				D2F0CF691A4BE46C07EA7522 /* WubiDictBuilder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		957E31024CE3EC2BC9ED5538 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D53F8B731613F8D790E02A6 /* WubiDictBehaviorTests.swift in Sources */,
+				1310C94D4E7CCCC06827F96D /* WubiDictTests.swift in Sources */,
+				47539E6DF6293EAA58523E38 /* WubiSupportTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5983074EEF55F182F66A256D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7DAF0C5C9B3A45BF9948E9A8 /* WubiEngine */;
+			targetProxy = 7F6B8359C71C507D51CCE424 /* PBXContainerItemProxy */;
+		};
+		621673151EB18CA940F240DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 646ECB589E7229E5B97AE674 /* WubiSupport */;
+			targetProxy = 20A341ABB001260F9395375E /* PBXContainerItemProxy */;
+		};
+		FF825CCE1AD6588036E44F94 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 646ECB589E7229E5B97AE674 /* WubiSupport */;
+			targetProxy = 3832B0030F6743BE58705455 /* PBXContainerItemProxy */;
+		};
+		FFA7CA3CD28C7753F33917DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7DAF0C5C9B3A45BF9948E9A8 /* WubiEngine */;
+			targetProxy = A36AD8F62842CED7E0A33A6A /* PBXContainerItemProxy */;
+		};
+		FFDB9CB3FA55116496634DF3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7DAF0C5C9B3A45BF9948E9A8 /* WubiEngine */;
+			targetProxy = 05CF9950EE4EA00D8408E5F6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0EA111A4EB4D04254AA8159F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A22F5933D45A3A0F3AEDFD62 /* en */,
+				DED5646D29FE5D25499C4E90 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		177D82871D984F947CF28E5D /* wubi_icon.icns */ = {
+			isa = PBXVariantGroup;
+			children = (
+				36BC1E7851BC2A951705F119 /* en */,
+				B2A05C8EB6F00AB4B398C711 /* zh-Hans */,
+			);
+			name = wubi_icon.icns;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		341BA3B7C82DDD561AC6B8B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiamiwolf.inputmethod.WubiEngine;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		59073E8D5C10326CEEFF5826 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiamiwolf.inputmethod.WubiMacTests;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		8C55A1297956EF39620E9551 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WubiMac/Resources/WubiMac.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = WubiMac/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiamiwolf.inputmethod.WubiMac;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		9B8CBE3B1DE81469D0C196C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiamiwolf.inputmethod.WubiSupport;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		B134407D21745B8B6A46800B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiamiwolf.inputmethod.WubiEngine;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		B9F2B3585609C115C2D4541B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiamiwolf.inputmethod.WubiMacTests;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		CD170D85C53544CCCE09499C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		CFC0F109A5CCDCAF66BC1812 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E399E7D20D79A7AB47ED401D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiamiwolf.inputmethod.WubiSupport;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		E717445AA1EC41210C797944 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WubiMac/Resources/WubiMac.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = WubiMac/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiamiwolf.inputmethod.WubiMac;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		046448755E6F3B2FDFDBFD3E /* Build configuration list for PBXNativeTarget "WubiSupport" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9B8CBE3B1DE81469D0C196C2 /* Debug */,
+				E399E7D20D79A7AB47ED401D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		16B848B0CF1C9FDE4E5180F7 /* Build configuration list for PBXNativeTarget "WubiMacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9F2B3585609C115C2D4541B /* Debug */,
+				59073E8D5C10326CEEFF5826 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		3028D50C92E7FAFEDEE42094 /* Build configuration list for PBXProject "WubiMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFC0F109A5CCDCAF66BC1812 /* Debug */,
+				CD170D85C53544CCCE09499C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		3921C7B79236EB896F1AA16B /* Build configuration list for PBXNativeTarget "WubiMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C55A1297956EF39620E9551 /* Debug */,
+				E717445AA1EC41210C797944 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FC79FB8638F1EA41749C1534 /* Build configuration list for PBXNativeTarget "WubiEngine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				341BA3B7C82DDD561AC6B8B9 /* Debug */,
+				B134407D21745B8B6A46800B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AD6C5D8D4C1A332D9C72B04D /* Project object */;
+}

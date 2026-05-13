@@ -1,0 +1,107 @@
+name: WubiMac
+options:
+  bundleIdPrefix: com.xiamiwolf.inputmethod
+  deploymentTarget:
+    macOS: "13.0"
+settings:
+  base:
+    MACOSX_DEPLOYMENT_TARGET: "13.0"
+targets:
+  WubiEngine:
+    type: library.static
+    platform: macOS
+    deploymentTarget: "13.0"
+    sources:
+      - path: WubiEngine/Sources
+    dependencies:
+      - sdk: libsqlite3.tbd
+    settings:
+      base:
+        MACOSX_DEPLOYMENT_TARGET: "13.0"
+  WubiSupport:
+    type: library.static
+    platform: macOS
+    deploymentTarget: "13.0"
+    sources:
+      - path: WubiSupport/Sources
+    dependencies:
+      - target: WubiEngine
+    settings:
+      base:
+        MACOSX_DEPLOYMENT_TARGET: "13.0"
+  WubiMac:
+    type: application
+    platform: macOS
+    deploymentTarget: "13.0"
+    sources:
+      - path: WubiMac/Sources
+        excludes:
+          - CandidatePanelRefactored.swift
+          - InputControllerRefactored.swift
+      - path: WubiMac/Resources
+        excludes:
+          - Info.plist
+          - WubiMac.entitlements
+          - Icons
+    info:
+      path: WubiMac/Resources/Info.plist
+      properties:
+        CFBundleDisplayName: 虾米五笔输入法
+        CFBundleIconFile: wubi_icon.icns
+        # 不使用 LSBackgroundOnly — 参考 Squirrel 使用 false
+        LSBackgroundOnly: false
+        LSUIElement: true
+        NSPrincipalClass: NSApplication
+        NSHighResolutionCapable: true
+        # InputMethodKit 核心字段
+        InputMethodConnectionName: $(PRODUCT_BUNDLE_IDENTIFIER)_Connection
+        InputMethodServerControllerClass: WubiMac.WubiInputController
+        InputMethodServerDelegateClass: WubiMac.WubiInputController
+        tsInputMethodIconFileKey: wubi_menu_icon.icns
+        tsInputMethodAlternateIconFileKey: wubi_menu_icon_alt.icns
+        # 字符集声明
+        tsInputMethodCharacterRepertoireKey:
+          - Hans
+        # 输入模式定义（参考 Squirrel 结构）
+        ComponentInputModeDict:
+          tsInputModeListKey:
+            com.xiamiwolf.inputmethod.WubiMac:
+              TISInputSourceID: com.xiamiwolf.inputmethod.WubiMac
+              TISIntendedLanguage: zh-Hans
+              tsInputModeScriptKey: smUnicodeScript
+              tsInputModePrimaryInScriptKey: true
+              tsInputModeIsVisibleKey: true
+              tsInputModeDefaultStateKey: true
+              tsInputMethodCanHandleReconversion: true
+              tsInputMethodCanHandleUndo: true
+              tsInputModeKeyEquivalentModifiersKey: 4608
+              tsInputModeMenuIconFileKey: wubi_menu_icon.icns
+              tsInputModeAlternateMenuIconFileKey: wubi_menu_icon_alt.icns
+              tsInputModePaletteIconFileKey: wubi_menu_icon.icns
+              tsInputModeCharacterRepertoireKey:
+                - Hans
+          tsVisibleInputModeOrderedArrayKey:
+            - com.xiamiwolf.inputmethod.WubiMac
+    entitlements:
+      path: WubiMac/Resources/WubiMac.entitlements
+    dependencies:
+      - sdk: InputMethodKit.framework
+      - sdk: libsqlite3.tbd
+      - target: WubiEngine
+      - target: WubiSupport
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.xiamiwolf.inputmethod.WubiMac
+        MACOSX_DEPLOYMENT_TARGET: "13.0"
+  WubiMacTests:
+    type: bundle.unit-test
+    platform: macOS
+    deploymentTarget: "13.0"
+    sources:
+      - path: WubiMacTests/Sources
+    dependencies:
+      - target: WubiEngine
+      - target: WubiSupport
+    settings:
+      base:
+        MACOSX_DEPLOYMENT_TARGET: "13.0"
