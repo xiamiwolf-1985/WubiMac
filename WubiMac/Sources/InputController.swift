@@ -92,7 +92,7 @@ class WubiInputController: IMKInputController {
     @objc func openConfiguration() { ConfigurationWindowController.shared.showWindow(nil) }
     
     override func handle(_ event: NSEvent!, client sender: Any!) -> Bool {
-        guard let client = sender as? IMKTextInput else { return false }
+        guard let client = resolvedClient(from: sender) else { return false }
         
         if event.type == .flagsChanged {
             guard SettingsManager.shared.shiftTogglesEnglish else {
@@ -271,9 +271,7 @@ class WubiInputController: IMKInputController {
         if dict.candidates.isEmpty {
             CandidatePanel.shared.hide()
         } else {
-            var rect = NSRect.zero
-            client.attributes(forCharacterIndex: 0, lineHeightRectangle: &rect)
-            CandidatePanel.shared.show(candidates: dict.candidates, at: rect.origin)
+            CandidatePanel.shared.show(candidates: dict.candidates, at: candidateAnchorPoint(for: client))
         }
     }
     
@@ -285,7 +283,7 @@ class WubiInputController: IMKInputController {
     
     // 输入法被注销或切换走时
     override func deactivateServer(_ sender: Any!) {
-        let client = (sender as? IMKTextInput) ?? self.client()
+        let client = resolvedClient(from: sender)
         if let client = client, !dict.buffer.isEmpty {
             // 将未完成的输入强制提交上屏，防止在 Safari 中"吞"字母
             client.insertText(dict.buffer, replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
@@ -302,13 +300,13 @@ class WubiInputController: IMKInputController {
             dict.clear()
             CandidatePanel.shared.hide()
             // 通知客户端清除标记文字
-            (sender as? IMKTextInput)?.setMarkedText("", selectionRange: NSRange(location: 0, length: 0), replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
+            resolvedClient(from: sender)?.setMarkedText("", selectionRange: NSRange(location: 0, length: 0), replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
         }
     }
     
     // 强制提交
     override func commitComposition(_ sender: Any!) {
-        let client = (sender as? IMKTextInput) ?? self.client()
+        let client = resolvedClient(from: sender)
         if let client = client, !dict.buffer.isEmpty {
             client.insertText(dict.buffer, replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
             dict.clear()
@@ -358,5 +356,42 @@ class WubiInputController: IMKInputController {
         try? dict.open()
         CandidatePanel.shared.hide()
         pendingClientForCommit = nil
+    }
+
+    private func resolvedClient(from sender: Any?) -> IMKTextInput? {
+        if let client = sender as? IMKTextInput {
+            return client
+        }
+        return self.client() as? IMKTextInput
+    }
+
+    private func candidateAnchorPoint(for client: IMKTextInput) -> NSPoint {
+        let markedRange = client.markedRange()
+        let selectedRange = client.selectedRange()
+        var candidateIndices: [Int] = []
+
+        if markedRange.location != NSNotFound, selectedRange.location != NSNotFound {
+            let relativeIndex = max(0, selectedRange.location - markedRange.location)
+            candidateIndices.append(min(dict.buffer.count, relativeIndex))
+        }
+
+        candidateIndices.append(dict.buffer.count)
+        candidateIndices.append(max(0, dict.buffer.count - 1))
+        candidateIndices.append(0)
+
+        for index in candidateIndices {
+            var rect = NSRect.zero
+            client.attributes(forCharacterIndex: index, lineHeightRectangle: &rect)
+            if !rect.isEmpty {
+                return NSPoint(x: rect.minX, y: rect.minY)
+            }
+        }
+
+        if let screen = NSScreen.main ?? NSScreen.screens.first {
+            let visibleFrame = screen.visibleFrame
+            return NSPoint(x: visibleFrame.minX + 32, y: visibleFrame.maxY - 64)
+        }
+
+        return .zero
     }
 }
