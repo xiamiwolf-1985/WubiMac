@@ -188,6 +188,33 @@ public final class WubiDict {
         return sqlite3_last_insert_rowid(db)
     }
 
+    public static func updateEntry(_ entry: WubiDictEntry, in dbPath: String) throws {
+        guard entry.id > 0 else {
+            throw WubiDictError.operationFailed("缺少要更新的词条标识")
+        }
+
+        let code = normalizedCode(entry.code)
+        let word = entry.word.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard isValidCode(code), !word.isEmpty else {
+            throw WubiDictError.operationFailed("编码必须为 1-4 位 a-y 字母，词条不能为空")
+        }
+
+        let db = try openWritableDatabase(at: dbPath)
+        defer { sqlite3_close(db) }
+
+        let sql = "UPDATE dict SET code = ?, word = ?, freq = ? WHERE id = ?;"
+        try execute(db: db, sql: sql) { stmt in
+            sqlite3_bind_text(stmt, 1, code, -1, SQLITE_TRANSIENT_PTR)
+            sqlite3_bind_text(stmt, 2, word, -1, SQLITE_TRANSIENT_PTR)
+            sqlite3_bind_int(stmt, 3, Int32(entry.freq))
+            sqlite3_bind_int64(stmt, 4, entry.id)
+        }
+
+        guard sqlite3_changes(db) > 0 else {
+            throw WubiDictError.operationFailed("未找到要更新的词条")
+        }
+    }
+
     public static func deleteEntry(id: Int64, from dbPath: String) throws {
         let db = try openWritableDatabase(at: dbPath)
         defer { sqlite3_close(db) }

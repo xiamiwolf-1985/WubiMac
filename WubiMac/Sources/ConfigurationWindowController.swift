@@ -280,6 +280,8 @@ private final class DictionarySettingsView: NSView, NSTableViewDataSource, NSTab
     private let codeField = NSTextField()
     private let wordField = NSTextField()
     private let freqField = NSTextField()
+    private let updateButton = NSButton()
+    private let clearSelectionButton = NSButton()
 
     private var entries: [WubiDictEntry] = []
 
@@ -312,14 +314,28 @@ private final class DictionarySettingsView: NSView, NSTableViewDataSource, NSTab
         root.addArrangedSubview(actionGroup)
         actionGroup.widthAnchor.constraint(equalTo: root.widthAnchor).isActive = true
 
-        let editorGroup = SettingsGroupView(title: "新增词条", subtitle: "编码限制为 1-4 位 a-y 字母")
+        let editorGroup = SettingsGroupView(title: "词条编辑", subtitle: "可新增词条，也可选中下方词条后修改词频")
         codeField.placeholderString = "编码"
         wordField.placeholderString = "词条"
         freqField.placeholderString = "词频"
         freqField.stringValue = "0"
         let addButton = makeButton(title: "增加", action: #selector(addEntry), symbolName: "plus")
+        updateButton.title = "保存修改"
+        updateButton.target = self
+        updateButton.action = #selector(updateSelectedEntry)
+        updateButton.bezelStyle = .rounded
+        updateButton.image = NSImage(systemSymbolName: "square.and.pencil", accessibilityDescription: "保存修改")
+        updateButton.imagePosition = .imageLeading
+        updateButton.isEnabled = false
+        clearSelectionButton.title = "取消选择"
+        clearSelectionButton.target = self
+        clearSelectionButton.action = #selector(clearSelection)
+        clearSelectionButton.bezelStyle = .rounded
+        clearSelectionButton.image = NSImage(systemSymbolName: "xmark.circle", accessibilityDescription: "取消选择")
+        clearSelectionButton.imagePosition = .imageLeading
+        clearSelectionButton.isEnabled = false
         let deleteButton = makeButton(title: "删除选中", action: #selector(deleteSelectedEntry), symbolName: "trash")
-        let editBar = NSStackView(views: [codeField, wordField, freqField, addButton, deleteButton])
+        let editBar = NSStackView(views: [codeField, wordField, freqField, addButton, updateButton, clearSelectionButton, deleteButton])
         editBar.orientation = .horizontal
         editBar.spacing = 8
         editBar.alignment = .centerY
@@ -352,6 +368,8 @@ private final class DictionarySettingsView: NSView, NSTableViewDataSource, NSTab
         tableView.headerView = nil
         tableView.usesAlternatingRowBackgroundColors = true
         tableView.allowsMultipleSelection = false
+        tableView.target = self
+        tableView.action = #selector(tableRowActivated)
 
         scrollView.documentView = tableView
         scrollView.hasVerticalScroller = true
@@ -379,6 +397,8 @@ private final class DictionarySettingsView: NSView, NSTableViewDataSource, NSTab
             wordField.widthAnchor.constraint(greaterThanOrEqualToConstant: 220),
             freqField.widthAnchor.constraint(equalToConstant: 84),
             addButton.widthAnchor.constraint(equalToConstant: 82),
+            updateButton.widthAnchor.constraint(equalToConstant: 98),
+            clearSelectionButton.widthAnchor.constraint(equalToConstant: 98),
             deleteButton.widthAnchor.constraint(equalToConstant: 110),
             searchField.widthAnchor.constraint(greaterThanOrEqualToConstant: 260),
             countBadge.widthAnchor.constraint(equalToConstant: 120),
@@ -439,9 +459,8 @@ private final class DictionarySettingsView: NSView, NSTableViewDataSource, NSTab
 
         do {
             try WubiDict.addEntry(entry, to: resolver.databasePath)
-            codeField.stringValue = ""
-            wordField.stringValue = ""
-            freqField.stringValue = "0"
+            tableView.deselectAll(nil)
+            resetEditor()
             notifyDictionaryChanged()
             reloadEntries()
             showStatus("已增加词条")
@@ -450,16 +469,40 @@ private final class DictionarySettingsView: NSView, NSTableViewDataSource, NSTab
         }
     }
 
+    @objc private func updateSelectedEntry() {
+        guard let selectedEntry = selectedEntry else {
+            showStatus("请先选择要修改的词条")
+            return
+        }
+
+        let updatedEntry = WubiDictEntry(
+            id: selectedEntry.id,
+            code: codeField.stringValue,
+            word: wordField.stringValue,
+            freq: Int(freqField.stringValue) ?? 0
+        )
+
+        do {
+            try WubiDict.updateEntry(updatedEntry, in: resolver.databasePath)
+            notifyDictionaryChanged()
+            reloadEntries(selectingEntryID: updatedEntry.id)
+            showStatus("已保存词条修改")
+        } catch {
+            showError(error)
+        }
+    }
+
     @objc private func deleteSelectedEntry() {
-        let row = tableView.selectedRow
-        guard entries.indices.contains(row) else {
+        guard let selectedEntry = selectedEntry else {
             showStatus("请先选择要删除的词条")
             return
         }
 
         do {
-            try WubiDict.deleteEntry(id: entries[row].id, from: resolver.databasePath)
+            try WubiDict.deleteEntry(id: selectedEntry.id, from: resolver.databasePath)
             notifyDictionaryChanged()
+            tableView.deselectAll(nil)
+            resetEditor()
             reloadEntries()
             showStatus("已删除词条")
         } catch {
@@ -516,18 +559,81 @@ private final class DictionarySettingsView: NSView, NSTableViewDataSource, NSTab
         }
     }
 
-    private func reloadEntries() {
+    @objc private func clearSelection() {
+        tableView.deselectAll(nil)
+        resetEditor()
+        showStatus("已取消选择")
+    }
+
+    @objc private func tableRowActivated() {
+        syncEditorWithSelection()
+    }
+
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        syncEditorWithSelection()
+    }
+
+    private func reloadEntries(selectingEntryID: Int64? = nil) {
         do {
             entries = try WubiDict.entries(at: resolver.databasePath, matching: searchField.stringValue)
             tableView.reloadData()
+            reselectEntryIfNeeded(selectingEntryID)
             countBadge.stringValue = "\(entries.count) 条"
             showStatus(searchField.stringValue.isEmpty ? "显示当前词库前 \(entries.count) 条词条" : "搜索到 \(entries.count) 条词条")
         } catch {
             entries = []
             tableView.reloadData()
             countBadge.stringValue = "0 条"
+            resetEditor()
             showError(error)
         }
+    }
+
+    private var selectedEntry: WubiDictEntry? {
+        let row = tableView.selectedRow
+        guard entries.indices.contains(row) else { return nil }
+        return entries[row]
+    }
+
+    private func syncEditorWithSelection() {
+        guard let entry = selectedEntry else {
+            resetEditor()
+            return
+        }
+
+        codeField.stringValue = entry.code
+        wordField.stringValue = entry.word
+        freqField.stringValue = "\(entry.freq)"
+        updateEditorButtons(hasSelection: true)
+    }
+
+    private func resetEditor() {
+        codeField.stringValue = ""
+        wordField.stringValue = ""
+        freqField.stringValue = "0"
+        updateEditorButtons(hasSelection: false)
+    }
+
+    private func updateEditorButtons(hasSelection: Bool) {
+        updateButton.isEnabled = hasSelection
+        clearSelectionButton.isEnabled = hasSelection
+    }
+
+    private func reselectEntryIfNeeded(_ entryID: Int64?) {
+        guard let entryID else {
+            syncEditorWithSelection()
+            return
+        }
+
+        guard let row = entries.firstIndex(where: { $0.id == entryID }) else {
+            tableView.deselectAll(nil)
+            syncEditorWithSelection()
+            return
+        }
+
+        tableView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+        tableView.scrollRowToVisible(row)
+        syncEditorWithSelection()
     }
 
     private func notifyDictionaryChanged() {

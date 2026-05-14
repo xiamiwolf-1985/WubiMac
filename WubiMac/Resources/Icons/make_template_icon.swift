@@ -1,7 +1,7 @@
 import AppKit
 
 let sizes = [16, 32, 64, 128, 256, 512, 1024]
-let backgroundColor = NSColor.systemBlue
+let backgroundColor = NSColor(calibratedWhite: 0.08, alpha: 1.0)
 
 for size in sizes {
     let rect = NSRect(x: 0, y: 0, width: size, height: size)
@@ -10,11 +10,11 @@ for size in sizes {
     img.lockFocus()
     NSGraphicsContext.current?.imageInterpolation = .high
 
-    let cornerRadius = CGFloat(size) * 0.22
+    let cornerRadius = CGFloat(size) * 0.23
     backgroundColor.setFill()
     NSBezierPath(roundedRect: rect, xRadius: cornerRadius, yRadius: cornerRadius).fill()
 
-    let fontSize = CGFloat(size) * 0.56
+    let fontSize = CGFloat(size) * 0.58
     let font = NSFont(name: "PingFang SC Semibold", size: fontSize)
         ?? NSFont.systemFont(ofSize: fontSize, weight: .semibold)
     let attr: [NSAttributedString.Key: Any] = [
@@ -26,7 +26,7 @@ for size in sizes {
     let stringSize = string.size(withAttributes: attr)
     let stringRect = NSRect(
         x: (rect.width - stringSize.width) / 2,
-        y: (rect.height - stringSize.height) / 2 + CGFloat(size) * 0.02,
+        y: (rect.height - stringSize.height) / 2 + CGFloat(size) * 0.01,
         width: stringSize.width,
         height: stringSize.height
     )

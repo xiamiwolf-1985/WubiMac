@@ -7,12 +7,21 @@ let glyph = "虾"
 
 struct IconVariant {
     let name: String
-    let white: CGFloat
+    let background: NSColor
+    let foreground: NSColor
 }
 
 let variants = [
-    IconVariant(name: "wubi_menu_icon", white: 0.12),
-    IconVariant(name: "wubi_menu_icon_alt", white: 0.92)
+    IconVariant(
+        name: "wubi_menu_icon",
+        background: NSColor(calibratedWhite: 0.08, alpha: 1.0),
+        foreground: .white
+    ),
+    IconVariant(
+        name: "wubi_menu_icon_alt",
+        background: NSColor(calibratedWhite: 0.12, alpha: 1.0),
+        foreground: NSColor(calibratedWhite: 0.96, alpha: 1.0)
+    )
 ]
 
 func font(for size: CGFloat) -> NSFont {
@@ -20,7 +29,7 @@ func font(for size: CGFloat) -> NSFont {
         ?? NSFont.systemFont(ofSize: size, weight: .semibold)
 }
 
-func drawMenuIcon(size: Int, white: CGFloat) -> NSBitmapImageRep {
+func drawMenuIcon(size: Int, variant: IconVariant) -> NSBitmapImageRep {
     let bitmap = NSBitmapImageRep(
         bitmapDataPlanes: nil,
         pixelsWide: size,
@@ -44,20 +53,24 @@ func drawMenuIcon(size: Int, white: CGFloat) -> NSBitmapImageRep {
     NSColor.clear.setFill()
     rect.fill()
 
-    let fontSize = scale * 0.70
+    let cornerRadius = scale * 0.24
+    variant.background.setFill()
+    NSBezierPath(roundedRect: rect, xRadius: cornerRadius, yRadius: cornerRadius).fill()
+
+    let fontSize = scale * 0.72
     let attributes: [NSAttributedString.Key: Any] = [
         .font: font(for: fontSize),
-        .foregroundColor: NSColor(calibratedWhite: white, alpha: 1.0)
+        .foregroundColor: variant.foreground
     ]
     let attributed = NSAttributedString(string: glyph, attributes: attributes)
     let line = CTLineCreateWithAttributedString(attributed)
     let context = NSGraphicsContext.current!.cgContext
     let inkBounds = CTLineGetImageBounds(line, context)
 
-    let margin = max(1, scale * 0.08)
+    let margin = max(1, scale * 0.12)
     let availableSize = scale - margin * 2
     let x = margin + (availableSize - inkBounds.width) / 2 - inkBounds.minX
-    let y = margin + (availableSize - inkBounds.height) / 2 - inkBounds.minY
+    let y = margin + (availableSize - inkBounds.height) / 2 - inkBounds.minY + scale * 0.01
 
     context.textPosition = CGPoint(x: x, y: y)
     CTLineDraw(line, context)
@@ -107,7 +120,7 @@ for variant in variants {
     var pngsBySize: [Int: Data] = [:]
 
     for size in sizes {
-        let bitmap = drawMenuIcon(size: size, white: variant.white)
+        let bitmap = drawMenuIcon(size: size, variant: variant)
         if let data = bitmap.representation(using: .png, properties: [:]) {
             pngsBySize[size] = data
             let filename = size <= 32

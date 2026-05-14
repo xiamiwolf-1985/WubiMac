@@ -66,6 +66,18 @@ final class WubiDictBehaviorTests: XCTestCase {
         XCTAssertTrue(entries.isEmpty)
     }
 
+    func testDictionaryEntryManagementUpdatesExistingEntry() throws {
+        let id = try WubiDict.addEntry(WubiDictEntry(code: "xy", word: "测试", freq: 42), to: dbPath)
+
+        try WubiDict.updateEntry(WubiDictEntry(id: id, code: "xh", word: "测试词", freq: 99), in: dbPath)
+
+        let entries = try WubiDict.entries(at: dbPath, matching: "测试词")
+        XCTAssertEqual(entries.count, 1)
+        XCTAssertEqual(entries.first?.id, id)
+        XCTAssertEqual(entries.first?.code, "xh")
+        XCTAssertEqual(entries.first?.freq, 99)
+    }
+
     func testDictionaryImportAndExportEntries() throws {
         let importURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("wubi-import.txt")
         let exportURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("wubi-export.txt")

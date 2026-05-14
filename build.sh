@@ -6,6 +6,21 @@ echo "=== WubiMac 五笔输入法构建脚本 ==="
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"
 
+sync_icons() {
+    local icons_dir="WubiMac/Resources/Icons"
+    local resources_dir="WubiMac/Resources"
+
+    echo "🎨 生成并同步图标资源..."
+    swift "$icons_dir/make_icon.swift" "$icons_dir"
+    swift "$icons_dir/make_menu_icon.swift" "$icons_dir"
+    swift "$icons_dir/make_template_icon.swift" "$icons_dir/wubi_icon.iconset"
+
+    cp "$icons_dir/wubi_menu_icon.icns" "$resources_dir/wubi_menu_icon.icns"
+    cp "$icons_dir/wubi_menu_icon_alt.icns" "$resources_dir/wubi_menu_icon_alt.icns"
+    cp "$icons_dir/wubi_icon.icns" "$resources_dir/en.lproj/wubi_icon.icns"
+    cp "$icons_dir/wubi_icon.icns" "$resources_dir/zh-Hans.lproj/wubi_icon.icns"
+}
+
 # ── 1. 检查 XcodeGen ──
 XCODEGEN="$(which xcodegen 2>/dev/null || echo /opt/homebrew/bin/xcodegen)"
 if [ ! -x "$XCODEGEN" ]; then
@@ -23,7 +38,10 @@ else
 fi
 rm -rf ~/Library/Developer/Xcode/DerivedData/WubiMac-* 2>/dev/null || true
 
-# ── 3. 生成并编译 ──
+# ── 3. 生成图标资源 ──
+sync_icons
+
+# ── 4. 生成并编译 ──
 echo "⚙️  生成 Xcode 项目..."
 "$XCODEGEN" generate
 
@@ -41,7 +59,7 @@ xcodebuild \
     ONLY_ACTIVE_ARCH=YES \
     2>&1 | tail -3
 
-# ── 4. 验证 ──
+# ── 5. 验证 ──
 APP=".build/DerivedData/Build/Products/Release/WubiMac.app"
 if [ ! -f "$APP/Contents/MacOS/WubiMac" ]; then
     echo "❌ 构建失败"; exit 1
@@ -58,7 +76,7 @@ if [ -z "$CONN" ]; then
 fi
 echo "✅ 编译成功 (ConnectionName: $CONN)"
 
-# ── 5. 安装 ──
+# ── 6. 安装 ──
 INSTALL_TARGET="/Library/Input Methods/WubiMac.app"
 if [ -t 0 ] && [ -t 1 ]; then
     echo "📦 安装..."
